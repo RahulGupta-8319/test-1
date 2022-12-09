@@ -36,3 +36,50 @@
     transform: rotate(360deg);
   }
 }
+.header-ul{
+  background-color: black;
+  margin: 0px;
+  text-align: right;
+  
+}
+.header-ul li{
+ display: inline-block;
+ padding: 10px;
+ color: white;
+ margin-right:20px;
+}
+.header-ul li:hover{
+ color:orange ;
+}
+.header-ul li a{
+  text-decoration: none;
+  color: white;
+}
+.signup{
+  background-color: antiquewhite;
+  margin-top: 30px;
+  margin-left: 35%;
+  width: 250px;
+  height: 330px;
+  border-radius: 15px;
+  box-shadow: 10px 10px 5px lightblue;
+}
+.btn{
+  background-color: rgb(236, 228, 233);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  width: 80px;
+  color: rgb(12, 12, 12);
+}
+.btn:hover{
+  background-color: #61dafb;
+
+}
+.input{
+  border-radius: 7px;
+  border: none;
+  padding: 10px;
+}
+
+
