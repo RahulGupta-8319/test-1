@@ -37,6 +37,7 @@
   }
 }
 .header-ul{
+  height: 70px;
   background-color: black;
   margin: 0px;
   text-align: right;
@@ -44,10 +45,14 @@
 }
 .header-ul li{
  display: inline-block;
- padding: 10px;
+ padding: 20px;
  color: white;
  margin-right:20px;
 }
+.header-ul2 {
+  text-align: left;
+}
+
 .header-ul li:hover{
  color:orange ;
 }
@@ -57,10 +62,10 @@
 }
 .signup{
   background-color: antiquewhite;
-  margin-top: 30px;
-  margin-left: 35%;
-  width: 250px;
-  height: 330px;
+  margin-top: 105px;
+  margin-left: 37%;
+  width: 450px;
+  height: 350px;
   border-radius: 15px;
   box-shadow: 10px 10px 5px lightblue;
 }
@@ -77,16 +82,17 @@
 
 }
 .input{
+  width: 300px;
   border-radius: 7px;
   border: none;
   padding: 10px;
 }
 .login{
   background-color: antiquewhite;
-  width: 250px;
+  width: 450px;
   height: 230px;
   border-radius: 15px;
-  margin: 150px 0% 0% 40%;
+  margin: 150px 0% 0% 35%;
   box-shadow:  10px 10px 5px lightblue;
 
 }

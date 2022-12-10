@@ -1,12 +1,12 @@
-
 import {useState} from 'react'
-// import { json } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const [name , setName] = useState("")
   const [mobile , setMobile] = useState("")
   const [email , setEmail] = useState("")
   const [password , setPassword] = useState("")
+  const navigate = useNavigate()
 
   const collectData = async (e) =>{
     e.preventDefault()
@@ -18,6 +18,7 @@ const SignUp = () => {
     })
     result = await result.json()
     console.log(result);
+    navigate("/login")
   }
 
   return (
