@@ -2,6 +2,7 @@ import {useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
+  const navigate = useNavigate()
   const [name , setName] = useState("")
   const [mobile , setMobile] = useState("")
   const [email , setEmail] = useState("")
@@ -23,6 +24,7 @@ const SignUp = () => {
       alert(result.msg)
     }else{
       console.log(result);
+      navigate('/login')
     }
     // navigate("/login")
   }

@@ -1,7 +1,9 @@
 import {useState} from 'react'
 // import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  let navigate = useNavigate()
 
   const [email , setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -20,8 +22,12 @@ const Login = () => {
     
     if(result.status==false) {
       alert(result.msg)
+      
     }else{
+      localStorage.setItem("teacher", JSON.stringify(result.data.teacherId))
+      localStorage.setItem("token", JSON.stringify(result.data.token))
       console.log(result);
+      navigate('/')
     }
 
   }

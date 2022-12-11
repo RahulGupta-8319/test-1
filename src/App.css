@@ -102,6 +102,24 @@
   border-radius: 15px;
   box-shadow:  10px 10px 5px lightblue;
 }
+.header-right{
+  text-align: left;
+}
+.student-d{
+  border: 1px solid black;
+
+}
+.sttudentList{
+  text-align: center;
+  margin-top: 50px;
+
+}
+.sttudentList ul li{
+  display: inline-block;
+  width: 150px;
+  border: 2px solid skyblue;
+  padding: 5px;
+}
 
 
 
