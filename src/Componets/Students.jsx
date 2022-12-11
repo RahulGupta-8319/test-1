@@ -1,7 +1,9 @@
 import React from 'react'
+import { useState } from 'react';
 import {useEffect} from 'react';
 
 const Students = () => {
+  const [student,setStudent] = useState([])
   useEffect(() =>{
     getStudent()
   }, [])
@@ -14,6 +16,11 @@ const Students = () => {
 
      }})
      result = await result.json()
+     if(result.status == false){
+       alert(result.msg)
+     }else{
+         setStudent(result.data)
+     }
      console.log(result, "**");
     
   }
