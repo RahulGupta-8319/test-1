@@ -40,7 +40,7 @@ const createStudent = async (req, res) => {
 
 const getStudent = async (req,res) =>{
     try {
-        let teacherId = req.params.id
+        let teacherId = JSON.parse(req.params.id)
          
     
 

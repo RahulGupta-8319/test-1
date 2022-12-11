@@ -1,5 +1,7 @@
 const jwt = require("jsonwebtoken")
-const isObject = mongoose.Schema.Types.ObjectId
+const mongoose = require("mongoose")
+const teacherModel = require("../model/teacherModel")
+const isObject = mongoose.Types.ObjectId
 
 let authentication = async (req,res,next) =>{
     try {
@@ -22,7 +24,7 @@ let authentication = async (req,res,next) =>{
 let authorization = async (req,res,next) =>{
     try {
         let tokenId = req.token
-        let teacherId = req.params.id
+        let teacherId = JSON.parse(req.params.id)
 
     if( !isObject(teacherId) ) return res.status(400).send({ status: false, msg: "teacherID not valid.." });
     let teacher = await teacherModel.findById(teacherId)
