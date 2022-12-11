@@ -5,9 +5,11 @@ import {BrowserRouter as Router , Routes,Route} from "react-router-dom"
 import SignUp from './Componets/SignUp';
 import Login from './Componets/Login';
 import Students from './Componets/Students';
+import AddStudent from './Componets/AddStudent';
 function App() {
   return (
     <div className="App">
+    <AddStudent/>
      <Router>
      <Header />
      <Routes>
