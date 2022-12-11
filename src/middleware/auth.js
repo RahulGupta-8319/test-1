@@ -1,11 +1,12 @@
 const jwt = require("jsonwebtoken")
+const isObject = mongoose.Schema.Types.ObjectId
 
 let authentication = async (req,res,next) =>{
     try {
-        let bearerToken = req.headers.authorization
-        let token = bearerToken.split(" ")
+        let token = req.headers.authorization
+        // let token = bearerToken.split(" ")
 
-        jwt.verify(token[1], "secretKey", (err, decoded)=>{
+        jwt.verify(token, "secretKey", (err, decoded)=>{
             if(err) return res.status(401).send({status:false, msg:err.message})
 
             req.token = decoded.id
@@ -27,9 +28,9 @@ let authorization = async (req,res,next) =>{
     let teacher = await teacherModel.findById(teacherId)
     if(!teacher) return res.status(404).send({ status: false, msg: "teacher not found.." });
 
-    if(tokenId !== teacherId){
-     return res.status(403).send({status:false,msg:"Teacher unauthorized"})
-    }
+    if(tokenId !== teacherId){ return res.status(403).send({status:false,msg:"Teacher unauthorized"})}
+
+    next()
     } catch (error) {
         return res.status(500).send({status:false, msg:error.message})
     }
