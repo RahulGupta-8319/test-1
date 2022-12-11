@@ -14,10 +14,10 @@ Router.post('/signUp' , teacherController.signUp)
 Router.post('/login', teacherController.login)
 
 //student
-Router.post('/student/:id',authentication,studentController.createStudent )
-Router.get('/student/:id',studentController.getStudent )
-Router.put('/student/:id',studentController.updateStudent )
-Router.delete('/student/:id',studentController.deleteStudent )
+Router.post('/student/:id',authentication,authorization, studentController.createStudent )
+Router.get('/student/:id',authentication,authorization, studentController.getStudent )
+Router.put('/student/:id',authentication,authorization, studentController.updateStudent )
+Router.delete('/student/:id',authentication,authorization, studentController.deleteStudent )
 
 
 module.exports = Router

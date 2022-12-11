@@ -20,11 +20,6 @@ const createStudent = async (req, res) => {
     let { name, subject, marks } = data;
     let teacherId = req.params.id
 
-    if( !isObject(teacherId) ) return res.status(400).send({ status: false, msg: "teacherID not valid.." });
-    let teacher = await teacherModel.findById(teacherId)
-    if(!teacher) return res.status(404).send({ status: false, msg: "teacher not found.." });
-    data.teacherId = teacherId
-
     if (!isEmpty(name)) return res.status(400).send({ status: false, msg: "Enter student name.." });
     if (!nameRegex.test(name)) return res.status(400).send({ status: false, msg: "name should be in alphabate" });
 
@@ -47,9 +42,7 @@ const getStudent = async (req,res) =>{
     try {
         let teacherId = req.params.id
          
-        if(!isObject(teacherId)) return res.status(400).send({ status: false, msg: "Object id is Invalid" });
-        let teacher = await teacherModel.findById(teacherId)
-        if(!teacher) return res.status(404).send({ status: false, msg: "Teacher dataBase me ni h..!!" });
+    
 
         let  queries = req.query
         let {name, subject} = queries
@@ -66,7 +59,7 @@ const getStudent = async (req,res) =>{
             filter2.subject['$regex']= subject
         }
 
-        let studentFromDB = await studentModel.find({$and:[filter1, filter2, {isDeleted:false}]})
+        let studentFromDB = await studentModel.find({$and:[filter1, filter2,{teacherId:teacherId} ,{isDeleted:false}]})
 
         if(studentFromDB.length == 0) return res.status(404).send({ status: false, msg: "students not found" });
 
@@ -82,10 +75,6 @@ const updateStudent = async (req,res) =>{
     try {
         let teacherId = req.params.id
          
-        if(!isObject(teacherId)) return res.status(400).send({ status: false, msg: "Object id is Invalid" });
-        let teacher = await teacherModel.findById(teacherId)
-        if(!teacher) return res.status(404).send({ status: false, msg: "Teacher dataBase me ni h..!!" });
-
         let data = req.body
         let {name, subject, marks} = data
 
@@ -104,12 +93,7 @@ const updateStudent = async (req,res) =>{
 
 const deleteStudent = async (req,res)=>{
     try {
-        let teacherId = req.params.id
-         
-        if(!isObject(teacherId)) return res.status(400).send({ status: false, msg: "Object id is Invalid" });
-        let teacher = await teacherModel.findById(teacherId)
-        if(!teacher) return res.status(404).send({ status: false, msg: "Teacher dataBase me ni h..!!" });
-
+       
         // let data = req.body
         let studentId = req.body.studentId
         await studentModel.findByIdAndUpdate(studentId, {$set:{isDeleted : true}}, )

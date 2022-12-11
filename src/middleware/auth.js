@@ -8,19 +8,28 @@ let authentication = async (req,res,next) =>{
         jwt.verify(token[1], "secretKey", (err, decoded)=>{
             if(err) return res.status(401).send({status:false, msg:err.message})
 
-            req.token = decx
-
+            req.token = decoded.id
+            next()
 
         })
-        console.log(token);
-        next()
+        //console.log(token);
+       
     } catch (error) {
         return res.status(500).send({status:false, msg:error.message})
     }
 }
 let authorization = async (req,res,next) =>{
     try {
-        
+        let tokenId = req.token
+        let teacherId = req.params.id
+
+    if( !isObject(teacherId) ) return res.status(400).send({ status: false, msg: "teacherID not valid.." });
+    let teacher = await teacherModel.findById(teacherId)
+    if(!teacher) return res.status(404).send({ status: false, msg: "teacher not found.." });
+
+    if(tokenId !== teacherId){
+     return res.status(403).send({status:false,msg:"Teacher unauthorized"})
+    }
     } catch (error) {
         return res.status(500).send({status:false, msg:error.message})
     }
