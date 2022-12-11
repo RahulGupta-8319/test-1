@@ -6,7 +6,7 @@ const SignUp = () => {
   const [mobile , setMobile] = useState("")
   const [email , setEmail] = useState("")
   const [password , setPassword] = useState("")
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
   const collectData = async (e) =>{
     e.preventDefault()
@@ -18,7 +18,13 @@ const SignUp = () => {
     })
     result = await result.json()
     console.log(result);
-    navigate("/login")
+
+    if(result.status == false){
+      alert(result.msg)
+    }else{
+      console.log(result);
+    }
+    // navigate("/login")
   }
 
   return (
