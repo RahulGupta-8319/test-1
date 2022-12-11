@@ -6,6 +6,6 @@ const teacherSchema = new mongoose.Schema({
     mobile:Number,
     password:String
 
-}, {timepstamp: true})
+}, {timestamps: true})
 
 module.exports = mongoose.model("Teacher", teacherSchema)
