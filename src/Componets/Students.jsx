@@ -1,18 +1,10 @@
 import React from 'react'
-import { useEffect, useState } from 'react';
-// import Students from './Students';
-import { Link } from 'react-router-dom';
+import {useEffect} from 'react';
 
 const Students = () => {
-
-  let [StudentData, setStudentData] = useState([])
-  let [name, setName] = useState("")
-  let [subject, setSubject] = useState("")
-
-
-
-  useEffect(() =>{ getStudent() }, [])
-
+  useEffect(() =>{
+    getStudent()
+  }, [])
   const getStudent = async () =>{
     let id =JSON.parse( localStorage.getItem("teacher") )
     console.log(id);
@@ -22,51 +14,8 @@ const Students = () => {
 
      }})
      result = await result.json()
-     if(result.status === false){
-      alert(result.msg)
-     }else{
-       console.log(result.data, "**");
-      setStudentData(result.data)
-     }   
-  }
-
-  const deleteStudent = async(studentId) =>{
-    let id = localStorage.getItem('teacher')
-    let result = await fetch(`http://localhost:3001/student/${id}`,{
-      method:'delete',
-      body:JSON.stringify({studentId}),
-      headers:{
-        'Content-Type':'application/json',
-        authorization:JSON.parse(localStorage.getItem("token"))
-       }
-
-    })
-    result =await result.json()
-
-    if(result.status === false){
-      alert(result.msg)
-    }else{
-      alert("successfully deleted")
-      getStudent() 
-    }
-  }
-
-  async function searchStudent(){
-    console.log(name, subject);
-    let id = JSON.parse( localStorage.getItem('teacher'))
-    let res = await fetch(`http://localhost:3001/student/${id}?name=${name}&subject=${subject}`, {
-      method:"get",
-      headers:{
-        authorization:JSON.parse(localStorage.getItem("token"))
-      }
-    })
-    res = await res.json()
-
-    if(res.status == false){
-      setStudentData([])
-    }else{
-      setStudentData(res.data)
-    }
+     console.log(result, "**");
+    
   }
 
 
