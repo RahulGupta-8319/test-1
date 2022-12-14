@@ -5,6 +5,7 @@ import SignUp from "./Componets/SignUp";
 import Login from "./Componets/Login";
 import Students from "./Componets/Students";
 import AddStudent from "./Componets/AddStudent";
+import UpdateStudent from "./Componets/UpdateStudent";
 function App() {
   return (
     <div className="App">
@@ -13,9 +14,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Students />} />
           <Route path="/addStudent" element={<AddStudent />} />
+          <Route path="/updateStudent/:id" element={<UpdateStudent/>} />
           <Route path="/signUp" element={<SignUp />} />
           {/* <Route path='/signup' element ={<SignUp/>} /> */}
           <Route path="/login" element={<Login />} />
+
         </Routes>
       </Router>
     </div>

@@ -99,8 +99,11 @@
 .addStudent{
   background-color: bisque;
   width: 450px;
+  height: 300px;
   border-radius: 15px;
   box-shadow:  10px 10px 5px lightblue;
+  margin: 150px 0% 0% 35%;
+  padding: 1px;
 }
 .header-right{
   text-align: left;
@@ -116,9 +119,52 @@
 }
 .sttudentList ul li{
   display: inline-block;
-  width: 150px;
+  width: 200px;
+  height: 30px;
   border: 2px solid skyblue;
   padding: 5px;
+  
+}
+.sttudentList ul {
+  margin: 0;
+}
+.sttudentList ul li button{
+  width: 60%;
+  height: 18px;
+  background-color: #1b50d6;
+  border: none;
+  color: aliceblue;
+  border-radius: 10px;
+
+}
+.sttudentList ul li a{
+  text-decoration: none;
+}
+
+.sttudentList ul li a div{
+  width: 60%;
+  height: 18px;
+  background-color: #1b50d6;
+  color: aliceblue;
+  border-radius: 10px;
+  margin-left: 40px;
+  margin-top: 2px;
+}
+.search input{
+margin-left: 15px;
+border-radius: 10px;
+height: 30px;
+width: 200px;
+border: 2px solid skyblue;
+}
+.search button{
+  margin: 10px;
+  padding: 7px;
+  border-radius: 10px;
+  border:none;
+  background-color:#f09433;
+  background-color: rgb(88, 88, 233);
+  color: aliceblue;
 }
 
 
