@@ -18,7 +18,7 @@ const createStudent = async (req, res) => {
   try {
     let data = req.body;
     let { name, subject, marks } = data;
-    let teacherId = req.params.id
+    let teacherId =JSON.parse( req.params.id )
 
     if (!isEmpty(name)) return res.status(400).send({ status: false, msg: "Enter student name.." });
     if (!nameRegex.test(name)) return res.status(400).send({ status: false, msg: "name should be in alphabate" });
@@ -38,9 +38,9 @@ const createStudent = async (req, res) => {
   }
 };
 
-const getStudent = async (req,res) =>{
+const getStudents = async (req,res) =>{
     try {
-        let teacherId = JSON.parse(req.params.id)
+        let teacherId = req.params.id
          
     
 
@@ -50,11 +50,11 @@ const getStudent = async (req,res) =>{
         let filter1 = {}
         let filter2 ={}
 
-        if(name){
+        if(name ){
             filter1.name = {}
             filter1.name["$regex"] = name
         }
-        if(subject){
+        if(subject ){
             filter2.subject={}
             filter2.subject['$regex']= subject
         }
@@ -68,6 +68,19 @@ const getStudent = async (req,res) =>{
         
     } catch (error) {
         return res.status(500).send({ status: false, msg: error.message });
+    }
+}
+
+const getStudent = async (req, res) =>{
+    try {
+        let studentId = req.params.id
+
+        let student = await studentModel.findById(studentId)
+
+        res.status(200).send({status:true, data:student})
+        
+    } catch (error) {
+        return res.status(500).send({ status: false, msg: error.message });   
     }
 }
 
@@ -105,5 +118,5 @@ const deleteStudent = async (req,res)=>{
     }
 }
 
-module.exports = {createStudent, getStudent, updateStudent, deleteStudent}
+module.exports = {createStudent, getStudents, updateStudent, deleteStudent, getStudent}
 

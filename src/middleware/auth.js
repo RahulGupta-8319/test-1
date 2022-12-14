@@ -13,7 +13,7 @@ let authentication = async (req,res,next) =>{
 
             req.token = decoded.id
             next()
-
+            
         })
         //console.log(token);
        
@@ -24,7 +24,7 @@ let authentication = async (req,res,next) =>{
 let authorization = async (req,res,next) =>{
     try {
         let tokenId = req.token
-        let teacherId = JSON.parse(req.params.id)
+        let teacherId = req.params.id
 
     if( !isObject(teacherId) ) return res.status(400).send({ status: false, msg: "teacherID not valid.." });
     let teacher = await teacherModel.findById(teacherId)
