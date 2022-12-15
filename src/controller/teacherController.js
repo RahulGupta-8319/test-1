@@ -25,24 +25,24 @@ const signUp = async function(req,res){
         if(Object.keys( data ).length == 0) return res.status(400).send({status:false, msg:"Enter input field"})
 
         if(!isEmpty(name)) return res.status(400).send({status:false, msg:"Enter your name"})
-        if(!nameRegex.test(name)) return res.status(400).send({status:false, msg:"Enter valid name chutiye..!!"})
+        if(!nameRegex.test(name)) return res.status(400).send({status:false, msg:"Enter valid name ..!!"})
 
         if(!isEmpty(email)) return res.status(400).send({status:false, msg:"Enter your Email"})
-        if(!emailRegex.test(email)) return res.status(400).send({status:false, msg:"Enter valid Email chutiye..!!"})
+        if(!emailRegex.test(email)) return res.status(400).send({status:false, msg:"Enter valid Email ..!!"})
         //unique
         let isEmail = await teacherModel.findOne({email:email})
         if(isEmail) return res.status(409).send({status:false, msg:" Email already exist ..!!"})
 
 
         if(!isEmpty(mobile)) return res.status(400).send({status:false, msg:"Enter your Mobile no."})
-        if(!mobileRegex.test(mobile)) return res.status(400).send({status:false, msg:"Enter valid mobile no. chutiye..!!"})
+        if(!mobileRegex.test(mobile)) return res.status(400).send({status:false, msg:"Enter valid mobile no. ..!!"})
         //unique
         let isMobile = await teacherModel.findOne({mobile:mobile})
         if(isMobile) return res.status(409).send({status:false, msg:"Mobile already exist ..!!"})
 
 
         if(!isEmpty(password)) return res.status(400).send({status:false, msg:"Enter your password"})
-        if(!passwordRegex.test(password)) return res.status(400).send({status:false, msg:"Enter valid password chutiye..!!"})
+        if(!passwordRegex.test(password)) return res.status(400).send({status:false, msg:"Enter valid password like Abc@123 ..!!"})
         //Encryption
         let salt =await bcrypt.genSalt(10)
         let EncryptedPassword = await bcrypt.hash(password, salt)
@@ -62,14 +62,14 @@ const login = async function(req,res){
         let {email, password} = data
 
         if(!isEmpty(email)) return res.status(400).send({status:false, msg:"Enter your Email"})
-        if(!emailRegex.test(email)) return res.status(400).send({status:false, msg:"Enter valid Email chutiye..!!"})
+        if(!emailRegex.test(email)) return res.status(400).send({status:false, msg:"Enter valid Email ..!!"})
 
         if(!isEmpty(password)) return res.status(400).send({status:false, msg:"Enter your password"})
-        if(!passwordRegex.test(password)) return res.status(400).send({status:false, msg:"email password sahi likh lo@#@ ..!!"})
+        if(!passwordRegex.test(password)) return res.status(400).send({status:false, msg:"Enter valid password like Abc@123 ..!!"})
 
         //DB call
         let teacher = await teacherModel.findOne({email:email})
-        if(!teacher) return res.status(400).send({status:false, msg:"email password sahi likh lo@#@ "})
+        if(!teacher) return res.status(400).send({status:false, msg:"Invalid Email "})
 
         //user verification trow password
         let pass = await bcrypt.compare(password, teacher.password )

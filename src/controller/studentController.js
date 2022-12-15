@@ -18,7 +18,7 @@ const createStudent = async (req, res) => {
   try {
     let data = req.body;
     let { name, subject, marks } = data;
-    let teacherId =JSON.parse( req.params.id )
+    let teacherId =req.params.id 
 
     if (!isEmpty(name)) return res.status(400).send({ status: false, msg: "Enter student name.." });
     if (!nameRegex.test(name)) return res.status(400).send({ status: false, msg: "name should be in alphabate" });
