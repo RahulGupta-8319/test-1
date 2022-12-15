@@ -7,10 +7,10 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-mongoose.connect("mongodb+srv://rahul:rahul123@cluster0.ghayzlv.mongodb.net/task01", {
+mongoose.connect("mongodb://localhost:27017", {
     useNewUrlParser : true
 })
-.then( () => console.log("monogoDb connected"))
+.then( () => console.log("mongoDb connected"))
 .catch( (e) => console.log(e.message) )
 
 app.use('/', route)
