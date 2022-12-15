@@ -6,8 +6,7 @@ const isObject = mongoose.Types.ObjectId
 let authentication = async (req,res,next) =>{
     try {
         let token = req.headers.authorization
-        // let token = bearerToken.split(" ")
-
+       
         jwt.verify(token, "secretKey", (err, decoded)=>{
             if(err) return res.status(401).send({status:false, msg:err.message})
 
@@ -15,7 +14,6 @@ let authentication = async (req,res,next) =>{
             next()
             
         })
-        //console.log(token);
        
     } catch (error) {
         return res.status(500).send({status:false, msg:error.message})
