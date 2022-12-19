@@ -2,12 +2,13 @@ const jwt = require("jsonwebtoken")
 const mongoose = require("mongoose")
 const teacherModel = require("../model/teacherModel")
 const isObject = mongoose.Types.ObjectId
+require("dotenv").config()
 
 let authentication = async (req,res,next) =>{
     try {
         let token = req.headers.authorization
        
-        jwt.verify(token, "secretKey", (err, decoded)=>{
+        jwt.verify(token,process.env.SECRETE , (err, decoded)=>{
             if(err) return res.status(401).send({status:false, msg:err.message})
 
             req.token = decoded.id

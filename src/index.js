@@ -2,12 +2,18 @@ const express = require("express")
 const mongoose = require("mongoose")
 const route = require("./routes/route.js")
 const cors = require("cors")
+const path = require("path")
+require("dotenv").config()
 const app = express()
 
 app.use(express.json())
 app.use(cors())
+app.use(express.static(path.join(__dirname,"../build")))
+app.use("*",function(req,res){
+    res.sendFile(path.join(__dirname,"../build/index.html"))
+})
 
-mongoose.connect("mongodb://localhost:27017", {
+mongoose.connect(process.env.MONGO_DB, {
     useNewUrlParser : true
 })
 .then( () => console.log("mongoDb connected"))
@@ -20,6 +26,6 @@ app.all('/*' , (req,res)=>{
 })
 
 
-app.listen(3001, ()=>{
+app.listen(process.env.PORT || 3001, ()=>{
     console.log(`server is runing on 3001`)
 })

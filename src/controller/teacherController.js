@@ -1,6 +1,7 @@
 const teacherModel = require("../model/teacherModel")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
+require("dotenv").config()
 
 
 const isEmpty = function (value) {
@@ -80,7 +81,7 @@ const login = async function(req,res){
             id:teacher._id
         }
 
-        let token = jwt.sign(payload, "secretKey" )
+        let token = jwt.sign(payload, process.env.SECRETE )
 
         return res.status(200).send({status:true, data:{teacherId:teacher._id, token : token}})
         
